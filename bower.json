@@ -1,0 +1,28 @@
+{
+  "name": "ss-bootstrap-components",
+  "version": "0.0.1",
+  "main": [
+        "lib/bootstrap-daterangepicker/daterangepicker.js",
+        "lib/bootstrap-daterangepicker/daterangepicker.css",
+        "src/ss.bootstrap-component.module.js",
+        "src/directives/ssdaterangepicker.js"
+  ],
+  "homepage": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+  },
+  "dependencies": {
+    "angular": "~1.4",
+    "ng-lodash": "~0.3.0"
+  },
+  "resolutions": {
+    "bootstrap": "v4.0.0-alpha"
+  }
+}
