@@ -1,11 +1,14 @@
 {
   "name": "ss-bootstrap-components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": [
         "lib/bootstrap-daterangepicker/daterangepicker.js",
         "lib/bootstrap-daterangepicker/daterangepicker.css",
+        "lib/bootstrap-multiselect/bootstrap-multiselect.js",
+        "lib/bootstrap-multiselect/bootstrap-multiseelct.css",
         "src/ss.bootstrap-component.module.js",
-        "src/directives/ssdaterangepicker.js"
+        "src/directives/ssdaterangepicker.directive.js",
+        "src/directives/ssmultiselect.directive.js"
   ],
   "homepage": "",
   "license": "MIT",
