@@ -33,9 +33,9 @@
                     },
                     onDropdownHide: function(event) {
 
-                        var parentContainer = $('.assessment-group-picker');
+                        var parentContainer = $('.multi-select-container');
                         var selectedOptions = this.getSelected();
-                        var outputContainer = $('.assessment-groups-chosen');
+                        var outputContainer = $('.selected-options');
                         var selectedOutput  = noSelectionMessage;
                         var tempGroupsToPush = [];
                         if(selectedOptions.length > 0) {
@@ -83,7 +83,7 @@
                         outputContainer.html(selectedOutput);
                         el.find('select').multiselect('rebuild');
 
-                        var outputContainer = $('.assessment-groups-chosen');
+                        var outputContainer = $('.selected-options');
 
                         if (vm.selectedgroups.length > 0) {
                             el.find('select').multiselect('select', vm.selectedgroups);
@@ -107,9 +107,9 @@
                 $('.assessment-groups').on('click', '.remove', function() {
                     var removedOptionText = $(this).siblings('.title').first().text();
                     var removedOptionVal  = $(this).siblings('.count').first().text();
-                    var outputContainer = $('.assessment-groups-chosen');
+                    var outputContainer = $('.selected-options');
 
-                    $('.assessment-group-picker select').multiselect('deselect', removedOptionVal);
+                    $('.multi-select-container select').multiselect('deselect', removedOptionVal);
 
                     $(this).parents('li').remove();
                     if(outputContainer.find('li').length === 0) {

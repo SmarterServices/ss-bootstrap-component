@@ -61,13 +61,15 @@ $scope.allOptions = [
 
 ```
 
-Then add the directive in your html file
+Then add the directive in your html file. 2 divs are needed along with the directive as shown here.
 
 ```
-<label for="assessment-group-picker">Multi Select</label>
+
 <div class="assessment-group-picker">
     <ss-multi-select selectedgroups="selectedOptions" allgroups="allOptions" check-changes="checkChanges()"/>
 </div>
+
+<div class="selected-options">Showing Selected Options</div>
 
 ```
 
