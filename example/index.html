@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<title>Sample</title>
+
+		<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="../lib/bootstrap-daterangepicker/daterangepicker.css">
+        <link rel="stylesheet" type="text/css" href="../lib/bootstrap-multiselect/bootstrap-multiselect.css">
+
+	</head>
+	<body>
+
+		<br />
+
+		<div ng-app="sample" ng-controller="mainCtrl" class="container">
+            <h3>{{title}}</h3>
+            <div class="form-group col-md-4">
+                <label for="last-updated">Date Range Picker</label>
+                <input ss-date-picker type="text" ng-model="datePicker.date" ng-change="onDateChange()" options="datePicker.options" class="form-control" id="last-updated" name="datefilter" placeholder="Set a range">
+            </div>
+
+
+
+            <div class="form-group assessment-groups col-md-4">
+
+                <label for="assessment-group-picker">Multi Select</label>
+                <div class="assessment-group-picker">
+                    <ss-multi-select selectedgroups="selectedOptions" allgroups="allOptions" check-changes="checkChanges()"/>
+                </div>
+
+                <div class="assessment-groups-chosen">Showing all groups.</div>
+
+            </div>
+
+		</div>
+
+        <script src="../bower_components/jquery/dist/jquery.js"></script>
+		<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="../bower_components/moment/moment.js"></script>
+        <script src="../bower_components/angular/angular.js"></script>
+        <script src="../bower_components/angular-moment/angular-moment.js"></script>
+		<script src="../bower_components/ng-lodash/build/ng-lodash.js"></script>
+
+
+
+
+		<script src="../src/ss.bootstrap-component.module.js"></script>
+        <script src="../lib/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="../lib/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+        <script src="../src/directives/ssdaterangepicker.directive.js"></script>
+        <script src="../src/directives/ssmultiselect.directive.js"></script>
+
+		<script>
+			angular
+				.module('sample',
+                        ['ss.bootstrap-component',
+                        'angularMoment',
+                        'ngLodash'
+                        ])
+				.controller('mainCtrl', function($scope) {
+
+                        $scope.title = "Bootstrap Components";
+
+                        $scope.onDateChange = onDateChange;
+                        $scope.datePicker = {};
+
+                        $scope.datePicker.date = {
+                            startDate: '',
+                            endDate: ''
+                        };
+
+                        $scope.datePicker.options = {
+                            ranges: {
+                                'Today': [moment(), moment()],
+                                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                            },
+                            locale: {
+                                cancelLabel: 'Clear',
+                                format: 'YYYY-MM-DD'
+                            },
+                            eventHandlers:{
+                                //'apply.daterangepicker': vm.applyDateRange
+                            }
+                        };
+
+                        $scope.selectedOptions = [];
+                        $scope.allOptions = [
+                            {'key': 'Option 1', 'label': 'Option 1', 'count': 10},
+                            {'key': 'Option 2', 'label': 'Option 2', 'count': 15}
+                        ];
+
+                        $scope.checkChanges = checkChanges;
+
+                        function onDateChange() {
+                            console.log("Date Changed");
+                        }
+
+                        function checkChanges() {
+
+                        }
+
+
+					});
+		</script>
+
+	</body>
+</html>
