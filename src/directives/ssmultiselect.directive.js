@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     angular.module('ss.bootstrap-component')
-        .directive('ssMultiSelect', ssMultiSelect);
+      .directive('ssMultiSelect', ssMultiSelect);
 
 
     ssMultiSelect.$inject =  ['lodash', 'moment'];
@@ -90,7 +90,7 @@
                             selectedOutput = $('<ul class="list-unstyled"></ul>');
                             lodash.forEach(vm.selectedgroups, function(key) {
                                 var select = el.find('select').find('option[value=' + key+']');
-                                selectedOutput.append("<li><span class='title'>" + select.text() + "</span> <span class='count'>" + select.data('count') + "</span> <i class='remove fa fa-times' title='remove filter'></i></li>");
+                                selectedOutput.append("<li><span class='title' data-value='" + key +"'>" + select.text() + "</span> <span class='count'>" + select.data('count') + "</span> <i class='remove fa fa-times' title='remove filter'></i></li>");
                             });
                             el.find('select').multiselect('refresh');
                             outputContainer.html(selectedOutput);
@@ -106,7 +106,7 @@
 
                 $('.assessment-groups').on('click', '.remove', function() {
                     var removedOptionText = $(this).siblings('.title').first().text();
-                    var removedOptionVal  = $(this).siblings('.count').first().text();
+                    var removedOptionVal  = $(this).siblings('.title').first().data('value');
                     var outputContainer = $('.selected-options');
 
                     $('.multi-select-container select').multiselect('deselect', removedOptionVal);
@@ -116,6 +116,12 @@
                         outputContainer.html(noSelectionMessage);
                     }
 
+                    var index = vm.selectedgroups.indexOf(removedOptionVal.toString());
+                    if (index > -1) {
+                        vm.selectedgroups.splice(index, 1);
+                    }
+
+                    vm.checkChanges();
                 });
 
             },
@@ -133,4 +139,3 @@
         var vm = this;
     }
 })();
-
